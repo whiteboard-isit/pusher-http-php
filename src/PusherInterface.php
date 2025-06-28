@@ -29,7 +29,7 @@ interface PusherInterface
      * @throws GuzzleException
      *
      */
-    public function trigger($channels, string $event, $data, array $params, bool $already_encoded = false);
+    public function trigger($channels, string $event, $data, $params = [], bool $already_encoded = false);
 
     /**
      * Asynchronously trigger an event by providing event name and payload.
