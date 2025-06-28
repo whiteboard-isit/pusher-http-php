@@ -434,8 +434,11 @@ class Pusher implements LoggerAwareInterface, PusherInterface
      * @throws GuzzleException
      * @throws PusherException Throws PusherException if $channels is an array of size 101 or above or $socket_id is invalid
      */
-    public function trigger($channels, string $event, $data, array $params = [], bool $already_encoded = false)
+    public function trigger($channels, string $event, $data, array $params, bool $already_encoded = false)
     {
+        if(!$params){
+            $params = [];
+        }
         $post_value = $this->make_trigger_body($channels, $event, $data, $params, $already_encoded);
         $this->log('trigger POST: {post_value}', compact('post_value'));
         return $this->process_trigger_result($this->post('/events', $post_value));
